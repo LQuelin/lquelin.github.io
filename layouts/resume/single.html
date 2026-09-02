@@ -1,0 +1,76 @@
+{{ define "main" }}
+
+<section class="home-section">
+  <h2 class="section-label">resume</h2>
+  <div class="resume">
+
+    {{ with .Site.Data.resume.education }}
+    <div class="resume-section">
+      <h3 class="resume-section__title">education</h3>
+      {{ range . }}
+      <div class="resume-entry">
+        <div class="resume-entry__header">
+          <span class="resume-entry__title">{{ .degree }}</span>
+          <span class="resume-entry__date dim">{{ .years }}</span>
+        </div>
+        <div class="resume-entry__sub">{{ .institution }}</div>
+        {{ with .note }}<div class="resume-entry__note dim">{{ . }}</div>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .Site.Data.resume.positions }}
+    <div class="resume-section">
+      <h3 class="resume-section__title">positions</h3>
+      {{ range . }}
+      <div class="resume-entry">
+        <div class="resume-entry__header">
+          <span class="resume-entry__title">{{ .title }}</span>
+          <span class="resume-entry__date dim">{{ .years }}</span>
+        </div>
+        <div class="resume-entry__sub">{{ .institution }}</div>
+        {{ with .note }}<div class="resume-entry__note dim">{{ . }}</div>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .Site.Data.resume.publications }}
+    <div class="resume-section">
+      <h3 class="resume-section__title">publications</h3>
+      {{ range . }}
+      <div class="resume-entry">
+        <div class="resume-entry__header">
+          <span class="resume-entry__title">
+            {{ if .url }}<a href="{{ .url }}" class="resume-entry__link">{{ .title }}</a>
+            {{ else }}{{ .title }}{{ end }}
+          </span>
+          <span class="resume-entry__date dim">{{ .year }}</span>
+        </div>
+        <div class="resume-entry__sub">{{ .authors }}</div>
+        {{ with .venue }}<div class="resume-entry__note"><span class="tag">{{ . }}</span></div>{{ end }}
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ with .Site.Data.resume.skills }}
+    <div class="resume-section">
+      <h3 class="resume-section__title">skills</h3>
+      <div class="resume-skills">
+        {{ range . }}
+        <div class="resume-skill">
+          <span class="label">{{ .category }}</span>
+          <span class="dim">{{ range $i, $v := .items }}{{ if $i }}, {{ end }}{{ $v }}{{ end }}</span>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+
+</section>
+
+{{ end }}

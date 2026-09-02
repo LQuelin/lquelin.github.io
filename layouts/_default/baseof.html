@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.LanguageCode | default "en" }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} · {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+
+  {{/* Fonts — JetBrains Mono via Bunny Fonts (GDPR-safe) */}}
+  <link rel="preconnect" href="https://fonts.bunny.net" />
+  <link href="https://fonts.bunny.net/css?family=jetbrains-mono:400,400i,600,700&display=swap" rel="stylesheet" />
+
+  {{ $css := resources.Get "css/main.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}" />
+
+  <link rel="icon" type="image/png" href="{{ "favicon.png" | relURL }}">
+  {{ block "head" . }}{{ end }}
+</head>
+<body>
+
+<div class="layout">
+
+  {{/* ── LEFT SIDEBAR / NAVBAR ─────────────────────────────────────── */}}
+  <nav class="sidebar" aria-label="Site navigation">
+
+    <div class="sidebar__identity">
+      <a href="{{ "/" | relURL }}" class="sidebar__name">{{ .Site.Title }}</a>
+      {{ with .Site.Params.tagline }}
+      <span class="sidebar__tagline">{{ . }}</span>
+      {{ end }}
+    </div>
+
+    <ul class="sidebar__nav" role="list">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+      <li class="sidebar__item">
+        <a
+          href="{{ .URL }}"
+          class="sidebar__link{{ if $currentPage.IsMenuCurrent "main" . }} sidebar__link--active{{ end }}"
+          {{ if .Params.external }}target="_blank" rel="noopener noreferrer"{{ end }}
+        >
+          <span class="sidebar__prefix" aria-hidden="true">
+            {{- if $currentPage.IsMenuCurrent "main" . -}}>&nbsp;{{- else -}}&nbsp;&nbsp;{{- end -}}
+          </span>
+          {{- .Name -}}
+        </a>
+      </li>
+      {{ end }}
+    </ul>
+
+    <div class="sidebar__footer">
+      {{ with .Site.Params.social }}
+      <ul class="sidebar__social" role="list">
+        {{ range . }}
+        <li>
+          <a href="{{ .url }}" class="sidebar__social-link" target="_blank" rel="noopener noreferrer" aria-label="{{ .name }}">
+            [{{ .name }}]
+          </a>
+        </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+      <p class="sidebar__build">
+        <span class="dim">built with</span> hugo
+      </p>
+    </div>
+
+  </nav>
+
+  {{/* ── MAIN CONTENT ──────────────────────────────────────────────── */}}
+  <main class="main" id="main-content">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+</div>
+
+{{ block "scripts" . }}{{ end }}
+</body>
+</html>

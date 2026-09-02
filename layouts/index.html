@@ -1,0 +1,109 @@
+{{ define "main" }}
+
+{{/* ── ABOUT ──────────────────────────────────────────────────────────────── */}}
+<section class="home-section">
+  <h2 class="section-label">about</h2>
+  <div class="about-block">
+
+    <div class="about-text">
+      {{ .Content }}
+    </div>
+
+    <div class="about-meta">
+      {{ with .Site.Params.position }}
+      <span class="about-meta__item">
+        <span class="label">position</span> {{ . }}
+      </span>
+      {{ end }}
+      {{ with .Site.Params.institution }}
+      <span class="about-meta__item">
+        <span class="label">institution</span> {{ . }}
+      </span>
+      {{ end }}
+      {{ with .Site.Params.research_area }}
+      <span class="about-meta__item">
+        <span class="label">area</span> {{ . }}
+      </span>
+      {{ end }}
+      {{ with .Site.Params.email }}
+      <span class="about-meta__item">
+        <span class="label">email</span>
+        <a href="mailto:{{ . }}" class="dim">{{ . }}</a>
+      </span>
+      {{ end }}
+    </div>
+
+  </div>
+</section>
+
+{{/* ── NEWS FEED ──────────────────────────────────────────────────────────── */}}
+<!-- <section class="home-section"> -->
+<!--   <h2 class="section-label">news</h2> -->
+<!---->
+<!--   {{/* -->
+<!--     Collect items from multiple sections. -->
+<!--     Each item should have: -->
+<!--       - date (standard Hugo front matter) -->
+<!--       - title -->
+<!--       - params.kind  = "blog" | "pub" | "talk" | "note" -->
+<!--       - params.venue (optional, for publications) -->
+<!--       - params.tags  (optional) -->
+<!--   */}} -->
+<!---->
+<!--   {{ $items := slice }} -->
+<!---->
+<!--   {{/* Blog posts */}} -->
+<!--   {{ range where .Site.RegularPages "Section" "blog" }} -->
+<!--     {{ $items = $items | append . }} -->
+<!--   {{ end }} -->
+<!---->
+<!--   {{/* Publications from data file */}} -->
+<!--   {{ range .Site.Data.publications }} -->
+<!--     {{ $items = $items | append . }} -->
+<!--   {{ end }} -->
+<!---->
+<!--   {{/* Talks */}} -->
+<!--   {{ range where .Site.RegularPages "Section" "talks" }} -->
+<!--     {{ $items = $items | append . }} -->
+<!--   {{ end }} -->
+<!---->
+<!--   {{/* Sort by date descending */}} -->
+<!--   {{ $sorted := sort $items "Date" "desc" }} -->
+<!---->
+<!--   <div class="feed"> -->
+<!--     {{ range first 15 $sorted }} -->
+<!--     <article class="feed-item"> -->
+<!---->
+<!--       <time class="feed-item__date" datetime="{{ .Date.Format "2006-01-02" }}"> -->
+<!--         {{ .Date.Format "2006-01-02" }} -->
+<!--       </time> -->
+<!---->
+<!--       <div class="feed-item__body"> -->
+<!--         {{ if .RelPermalink }} -->
+<!--         <a href="{{ .RelPermalink }}" class="feed-item__title">{{ .Title }}</a> -->
+<!--         {{ else }} -->
+<!--         <span class="feed-item__title">{{ .Title }}</span> -->
+<!--         {{ end }} -->
+<!---->
+<!--         <div class="feed-item__meta"> -->
+<!--           {{ with .Params.kind }} -->
+<!--           <span class="badge badge--{{ . }}">{{ . }}</span> -->
+<!--           {{ end }} -->
+<!--           {{ with .Params.venue }} -->
+<!--           <span class="dim">{{ . }}</span> -->
+<!--           {{ end }} -->
+<!--           {{ with .Params.tags }} -->
+<!--             {{ range first 2 . }} -->
+<!--               <span class="tag">{{ . }}</span> -->
+<!--             {{ end }} -->
+<!--           {{ end }} -->
+<!--         </div> -->
+<!--       </div> -->
+<!---->
+<!--     </article> -->
+<!--     {{ end }} -->
+<!--   </div> -->
+<!---->
+<!-- </section> -->
+
+{{ end }}

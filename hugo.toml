@@ -1,0 +1,73 @@
+baseURL      = "https://ryalith.github.io/"
+languageCode = "en-us"
+title        = "Lucie Quelin"          # shown in sidebar as site name
+# theme        = "custom"            # or remove if layouts/ is at site root (recommended)
+
+# Pagination
+pagination.pagerSize = 10
+
+# Markdown renderer
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true                  # allow raw HTML in .md files
+  [markup.highlight]
+    style          = "catppuccin-mocha"  # Hugo built-in Chroma theme (Hugo ≥ 0.123)
+    lineNos        = false
+    noClasses      = true
+
+# Output formats (needed for reveal-hugo talks later)
+[outputs]
+  home    = ["HTML"]
+  section = ["HTML"]
+  page    = ["HTML"]
+
+# ── Site params ────────────────────────────────────────────────────────────────
+
+[params]
+  description   = "4th Year Student @ Polytechnique · [your field]"
+  position      = "Research Intern"
+  institution   = "Polytechnique"
+  research_area = "AI, Generative Modelling, Inverse Problem Solving"
+  email         = "<name><dot><surname><at>math<dot>cnrs<dot>fr"
+  tagline       = "Reasearch Inter @ MAP5 | LTCI | ISIR"   # shown under name in sidebar
+
+  [[params.social]]
+    name = "github"
+    url  = "https://github.com/LQuelin"
+
+  # [[params.social]]
+  #   name = "scholar"
+  #   url  = "https://scholar.google.com/citations?user=XXXXX"
+
+  # [[params.social]]
+  #   name = "cv"
+  #   url  = "/cv.pdf"
+
+# ── Navigation menu ────────────────────────────────────────────────────────────
+
+[[menus.main]]
+  name       = "home"
+  url        = "/"
+  weight     = 1
+
+# [[menus.main]]
+#   name       = "about"
+#   url        = "/about/"
+#   weight     = 2
+
+# [[menus.main]]
+#   name       = "blog"
+#   url        = "/blog/"
+#   weight     = 3
+
+# [[menus.main]]
+#   name       = "talks"
+#   url        = "/talks/"
+#   weight     = 4
+
+[[menus.main]]
+  name       = "resume"
+  url        = "/resume/"
+  weight     = 5
+
+# notes section intentionally omitted from menu until ready

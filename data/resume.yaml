@@ -1,0 +1,30 @@
+education:
+  - degree: "MSc in Applied Mathematics & Computer Science"
+    institution: "Sorbonne Université"
+    years: "2025 – 2026"
+    note: "MS2A Masters (Additional Comp. Sci. Curriculum)"
+  - degree: "Titre d'Ingenieur Polytechnicien (MSc equivalent)"
+    institution: "Ecole Polytechnique"
+    years: "2022 – 2025"
+    note: "Applied Mathematics Specialization Program"
+
+positions:
+  - title: "PhD Student"
+    institution: "MAP5 (Université Paris Cité)"
+    years: "November 2026 - November 2029"
+    note: "Frugal Generative Models for Video Generation and Inpainting"
+  - title: "Research Intern"
+    institution: "ISIR, LTCI & MAP5"
+    years: "Spring & Summer 2026"
+    note: "Efficient Generative Models for Video Reconstruction"
+  - title: "Research Intern"
+    institution: "ECEO (EPFL)"
+    years: "Spring & Summer 2025"
+    note: "Improving Image Geo-Localization Tasks with Multimodal Representations"
+
+
+skills:
+  - category: "languages"
+    items: ["Python", "C++", "Cuda"]
+  - category: "tools"
+    items: ["PyTorch", "JAX", "Git"]

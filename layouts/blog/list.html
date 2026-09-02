@@ -1,0 +1,37 @@
+{{ define "main" }}
+
+<section class="home-section">
+  <h2 class="section-label">blog</h2>
+
+  {{ with .Content }}
+  <div class="about-text" style="margin-bottom: 1.5rem;">{{ . }}</div>
+  {{ end }}
+
+  <h3 class="section-label">feed</h3>
+
+  <div class="feed">
+    {{ range .Pages.ByDate.Reverse }}
+    <article class="feed-item">
+      <time class="feed-item__date" datetime="{{ .Date.Format "2006-01-02" }}">
+        {{ .Date.Format "2006-01-02" }}
+      </time>
+      <div class="feed-item__body">
+        <a href="{{ .RelPermalink }}" class="feed-item__title">{{ .Title }}</a>
+        <div class="feed-item__meta">
+          {{ with .Params.description }}
+          <span class="dim">{{ . }}</span>
+          {{ end }}
+          {{ with .Params.tags }}
+            {{ range first 2 . }}
+              <span class="tag">{{ . }}</span>
+            {{ end }}
+          {{ end }}
+        </div>
+      </div>
+    </article>
+    {{ end }}
+  </div>
+
+</section>
+
+{{ end }}
